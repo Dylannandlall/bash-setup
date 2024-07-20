@@ -13,7 +13,7 @@ sudo apt update && sudo apt upgrade -y && \
 		python3 \
 		python3-pip \
 		python3-venv \
-		python3-pygmentize \
+		python3-pygments \
 		git \
 		gcc \
 		make \
