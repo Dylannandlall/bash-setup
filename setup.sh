@@ -22,7 +22,7 @@ sudo apt install vim \
 			
 mkdir ~/Downloads 2>/dev/null
 
-curl -L https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -o vscode.deb
+curl -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o vscode.deb
 sudo dpkg -i vscode.deb
 rm vscode.deb
 
