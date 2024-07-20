@@ -7,9 +7,9 @@ mv .bashrc ~/.bashrc
 mv .bash_aliases ~/.bash_aliases
 mv .bash_profile ~/.bash_profile
 
-sudo apt update && sudo apt upgrade -y && \
-	sudo apt install \
-		vim \
+sudo apt update && sudo apt upgrade -y
+	
+sudo apt install vim \
 		python3 \
 		python3-pip \
 		python3-venv \
