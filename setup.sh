@@ -18,7 +18,7 @@ sudo apt update && sudo apt upgrade -y && \
 		gcc \
 		make \
 		curl \
-		
+		git \		
 			
 mkdir ~/Downloads 2>/dev/null
 
