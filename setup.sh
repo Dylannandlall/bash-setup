@@ -18,7 +18,7 @@ sudo apt install vim \
 		gcc \
 		make \
 		curl \
-		git \		
+		git 
 			
 mkdir ~/Downloads 2>/dev/null
 
