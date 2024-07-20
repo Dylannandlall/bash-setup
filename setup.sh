@@ -3,9 +3,9 @@
 #
 # Initializes environment to preferred configurations 
 
-mv .bashrc ~/.bashrc
-mv .bash_aliases ~/.bash_aliases
-mv .bash_profile ~/.bash_profile
+cp .bashrc ~/.bashrc
+cp .bash_aliases ~/.bash_aliases
+cp .bash_profile ~/.bash_profile
 
 sudo apt update && sudo apt upgrade -y
 	
