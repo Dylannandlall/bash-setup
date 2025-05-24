@@ -1,6 +1,14 @@
 import hashlib
-import sys
 import os
+import argparse
+
+parser = argparse.ArgumentParser(
+    prog="Check Hash v0.9.0",
+    description="Verifies hash of file with provided hash",
+    epilog="Insert text")
+
+parser.add_argument('filepath', help="File to be hashed")
+parser.add_argument('hash', help="Hash to verify")
 
 BUFSIZE = 65536
 
@@ -16,7 +24,6 @@ def sha256(filepath: str):
             sha256_object.update(data)
 
     return sha256_object.hexdigest()
-
 
 def sha512(filepath: str):
     sha512_object = hashlib.sha512()
@@ -66,34 +73,35 @@ def compare_hashes(calc_hash, given_hash):
         print(f"Calculated Hash: \t{calc_hash}\nGiven Hash: \t\t{given_hash}")
 
 def main():
+    args = parser.parse_args()
 
-    if len(sys.argv) != 4:
-        print(f"Expected 3 input arguments. Got {len(sys.argv)} instead")
+    filepath = args.filepath
+    hash = args.hash
+    length = len(hash)
+
+    if os.path.exists(filepath) != True:
+        print("Error: File path does not exist")
         exit(1)
     
-    type = sys.argv[1]
-    filepath = sys.argv[2]
-    hash = sys.argv[3]
-    
+    if os.path.isfile(filepath) != True:
+        print("Error: Path specified is not a file")
+        exit(1)
+
     calculated_hash = ""
 
-    if os.path.exists(filepath):
-        if os.path.isfile(filepath):
-            match type:
-                case "sha256":
-                    calculated_hash = sha256(filepath)
-                case "sha512":
-                    calculated_hash = sha512(filepath)
-                case "sha1":
-                    calculated_hash = sha1(filepath)
-                case "md5":
-                    calculated_hash = md5(filepath)
-        else:
-            print("Error: Path is not a file")
+    match length:
+        case 40:
+            calculated_hash = sha1(filepath)
+        case 64:
+            calculated_hash = sha256(filepath)
+        case 128:
+            calculated_hash = sha512(filepath)
+        case 32:
+            calculated_hash = md5(filepath)
+        case _:
+            print("Input hash not supported")
             exit(1)
-    else:
-        print("Error: file does not exist")
-        exit(1)
+
 
     compare_hashes(calculated_hash, hash)
 
